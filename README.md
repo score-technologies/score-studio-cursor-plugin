@@ -1,34 +1,35 @@
-# Cursor plugin template
+# Score Studio for Cursor
 
-Build and publish Cursor Marketplace plugins from a single repo.
+A Cursor plugin for turning a computer-vision objective into a versioned,
+evidence-gated Score Studio system. It helps an agent inspect the live contract,
+integrate the Python SDK or REST API, compose workflows, and check a model or
+workflow before release.
 
-Two starter plugins are included:
+The plugin was built from Cursor's official plugin template and is intentionally
+focused on the parts of Score Studio that are useful from a codebase:
 
-- **starter-simple**: rules and skills only
-- **starter-advanced**: rules, skills, agents, commands, hooks, MCP, and scripts
+- data ingestion, annotation interchange, versioning, and health;
+- specialist model training and VLM fine-tuning;
+- evaluation, conformity evidence, and release gates;
+- workflow composition across models, logic, deployment, and monitoring;
+- deployment, inference, workloads, and the production feedback loop.
 
-## Getting started
+See [the plugin README](plugins/score-studio/README.md) for commands and local
+installation.
 
-[Use this template](https://github.com/cursor/plugin-template/generate) to create a new repository, then customize:
+## Validate
 
-1. `.cursor-plugin/marketplace.json`: set marketplace `name`, `owner`, and `metadata`.
-2. `plugins/*/.cursor-plugin/plugin.json`: set `name` (lowercase kebab-case), `displayName`, `author`, `description`, `keywords`, `license`, and `version`.
-3. Replace placeholder rules, skills, agents, commands, hooks, scripts, and logos.
+```bash
+node scripts/validate-template.mjs
+```
 
-To add more plugins, see `docs/add-a-plugin.md`.
+The plugin is licensed under Apache-2.0. Before marketplace submission, add the
+final repository URL to the plugin manifest and test the installed plugin in
+Cursor.
 
-## Single plugin vs multi-plugin
+## Source baseline
 
-This template defaults to **multi-plugin** (multiple plugins in one repo).
-
-For a **single plugin**, move your plugin folder contents to the repository root, keep one `.cursor-plugin/plugin.json`, and remove `.cursor-plugin/marketplace.json`.
-
-## Submission checklist
-
-- Each plugin has a valid `.cursor-plugin/plugin.json`.
-- Plugin names are unique, lowercase, and kebab-case.
-- `.cursor-plugin/marketplace.json` entries map to real plugin folders.
-- All frontmatter metadata is present in rule, skill, agent, and command files.
-- Logos are committed and referenced with relative paths.
-- `node scripts/validate-template.mjs` passes.
-- Repository link is ready for submission to the Cursor team (Slack or `kniparko@anysphere.com`).
+Product guidance was derived from Score Studio commit `08bc450` (2026-08-24),
+including the current OpenAPI contract, Python SDK, workflow block catalog, and
+launch-readiness audit. The plugin tells Cursor to prefer a project's installed
+SDK and live OpenAPI document over this bundled snapshot whenever they differ.

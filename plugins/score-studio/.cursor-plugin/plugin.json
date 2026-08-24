@@ -1,0 +1,24 @@
+{
+  "name": "score-studio",
+  "displayName": "Score Studio",
+  "version": "0.1.0",
+  "description": "Design, integrate, evaluate, and release production computer-vision systems with Score Studio.",
+  "author": {
+    "name": "Score Technologies"
+  },
+  "homepage": "https://github.com/mxmsbt/score-studio-cursor-plugin",
+  "repository": "https://github.com/mxmsbt/score-studio-cursor-plugin",
+  "license": "Apache-2.0",
+  "keywords": [
+    "computer-vision",
+    "datasets",
+    "annotation",
+    "training",
+    "vlm",
+    "evaluation",
+    "workflows",
+    "deployment",
+    "inference"
+  ],
+  "logo": "assets/logo.svg"
+}

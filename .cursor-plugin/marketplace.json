@@ -1,23 +1,17 @@
 {
-  "name": "cursor-plugin-starters",
+  "name": "score-studio-plugins",
   "owner": {
-    "name": "Your Org",
-    "email": "plugins@example.com"
+    "name": "Score Technologies"
   },
   "metadata": {
-    "description": "Starter marketplace template for Cursor plugins",
+    "description": "Cursor tooling for building production computer-vision systems with Score Studio",
     "version": "0.1.0"
   },
   "plugins": [
     {
-      "name": "starter-simple",
-      "source": "./plugins/starter-simple",
-      "description": "Minimal plugin with rules and skills only"
-    },
-    {
-      "name": "starter-advanced",
-      "source": "./plugins/starter-advanced",
-      "description": "Full-featured plugin with rules, skills, agents, commands, hooks, and MCP"
+      "name": "score-studio",
+      "source": "./plugins/score-studio",
+      "description": "Design, integrate, evaluate, and release computer-vision systems with Score Studio"
     }
   ]
 }

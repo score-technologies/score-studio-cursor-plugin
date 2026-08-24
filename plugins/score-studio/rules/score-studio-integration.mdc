@@ -1,0 +1,31 @@
+---
+description: Ground Score Studio integrations in the current contract, domain language, and evidence-gated lifecycle
+alwaysApply: false
+---
+
+score-studio-integration:
+
+- Treat the installed SDK, checked-in OpenAPI artifact, or authorized live
+  OpenAPI document as the source of truth. Never invent routes, fields, model
+  slugs, workflow block types, scopes, or provider capabilities.
+- Keep credentials out of source control. Read `SCORESTUDIO_URL` and
+  `SCORESTUDIO_TOKEN` from environment or the host application's secret store.
+- Use immutable dataset versions for training and evaluation. Preserve the
+  dataset version, model version, evaluation run, and deployment revision in
+  application state and logs.
+- Treat evaluation evidence as a release prerequisite, not a dashboard
+  afterthought. Do not report a model or workflow as ready without the named
+  metric, threshold, dataset version, and result.
+- Distinguish workflow definitions from workloads. A workflow is reusable and
+  versioned; a workload is a durable execution that may be paused, resumed, or
+  cancelled when the API reports those capabilities.
+- Distinguish preview orchestration from executed work. If an API response
+  reports `mode: preview` or lists `deferred_blocks`, surface that truth to the
+  caller instead of claiming those blocks ran.
+- Keep model, runtime, provider connection, storage target, and credentials as
+  separate choices. Validate compatibility before creating a deployment.
+- Build a production feedback loop: monitoring and captured samples should lead
+  to reviewable, versioned data rather than silent mutation of training data.
+- Use Score Studio's customer-facing terms: Workflow builder, workflow,
+  workload, Production, dataset version, model version, evaluation evidence,
+  and conformity. Use “pipeline” only for legacy API or route identifiers.
