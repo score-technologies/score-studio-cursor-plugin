@@ -6,8 +6,8 @@
   "author": {
     "name": "Score Technologies"
   },
-  "homepage": "https://github.com/mxmsbt/score-studio-cursor-plugin",
-  "repository": "https://github.com/mxmsbt/score-studio-cursor-plugin",
+  "homepage": "https://github.com/score-technologies/score-studio-cursor-plugin",
+  "repository": "https://github.com/score-technologies/score-studio-cursor-plugin",
   "license": "Apache-2.0",
   "keywords": [
     "computer-vision",
