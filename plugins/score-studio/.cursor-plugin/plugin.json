@@ -1,7 +1,7 @@
 {
   "name": "score-studio",
   "displayName": "Score Studio",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Give your agents sight with evidence-backed computer-vision data, training, evaluation, workflows, and deployment.",
   "author": {
     "name": "Score Technologies"

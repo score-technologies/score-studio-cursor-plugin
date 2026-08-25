@@ -8,8 +8,10 @@ score-studio-integration:
 - Treat the installed SDK, checked-in OpenAPI artifact, or authorized live
   OpenAPI document as the source of truth. Never invent routes, fields, model
   slugs, workflow block types, scopes, or provider capabilities.
-- Keep credentials out of source control. Read `SCORESTUDIO_URL` and
-  `SCORESTUDIO_TOKEN` from environment or the host application's secret store.
+- Keep credentials out of source control. Use `https://api.scorestudio.ai` as
+  the default API and read `SCORESTUDIO_TOKEN` from the environment or host
+  application's secret store. Honor `SCORESTUDIO_URL` when a user explicitly
+  configures a custom, staging, self-hosted, or local API.
 - Use immutable dataset versions for training and evaluation. Preserve the
   dataset version, model version, evaluation run, and deployment revision in
   application state and logs.

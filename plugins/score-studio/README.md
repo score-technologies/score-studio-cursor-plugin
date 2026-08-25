@@ -38,9 +38,11 @@ ln -s "$(pwd)/plugins/score-studio" ~/.cursor/plugins/local/score-studio
 Restart Cursor or run `Developer: Reload Window`, then confirm the Score Studio
 skills, agent, and commands appear in Customize.
 
-No API credential is stored by this plugin. Application code should read
-`SCORESTUDIO_URL` and `SCORESTUDIO_TOKEN` from its normal secret-management
-path. Never commit either value.
+No API credential is stored by this plugin. The production API defaults to
+`https://api.scorestudio.ai`, so a standard setup only needs
+`SCORESTUDIO_TOKEN` from the application's secret-management path. Set
+`SCORESTUDIO_URL` only to target a custom, staging, self-hosted, or local Score
+Studio API. Never commit the token.
 
 ## Contract policy
 

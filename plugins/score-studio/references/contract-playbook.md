@@ -27,10 +27,12 @@ Preserve identifiers needed for audit and idempotency:
 
 ## Authentication
 
-The Python SDK baseline accepts `token=` or `SCORESTUDIO_TOKEN` and reads
-`SCORESTUDIO_URL`. Inference may use a scoped API key. Verify current scope names
-before creating a key. A key value may be shown only once; send it directly to
-the deployment secret store and never log it.
+The Python SDK baseline accepts `token=` or `SCORESTUDIO_TOKEN` and accepts its
+API through `base_url=` or `SCORESTUDIO_URL`. Generated hosted integrations
+should fall back to `https://api.scorestudio.ai` when neither URL override is
+set. Inference may use a scoped API key. Verify current scope names before
+creating a key. A key value may be shown only once; send it directly to the
+deployment secret store and never log it.
 
 ## Durable operations
 
