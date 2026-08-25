@@ -2,7 +2,7 @@
   "name": "score-studio",
   "displayName": "Score Studio",
   "version": "0.2.0",
-  "description": "Design, integrate, measure, and release evidence-gated computer-vision systems with Score Studio.",
+  "description": "Give your agents sight with evidence-backed computer-vision data, training, evaluation, workflows, and deployment.",
   "author": {
     "name": "Score Technologies"
   },

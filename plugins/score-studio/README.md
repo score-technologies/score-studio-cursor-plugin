@@ -1,8 +1,14 @@
 # Score Studio
 
-Score Studio for Cursor helps you build the whole vision lifecycle from the
-codebase you already have: data → model or VLM → evidence → workflow → runtime
-→ production feedback.
+## Give your agents sight.
+
+Score Studio is the computer vision layer for agents, automating data
+generation, annotation, training, evaluation, workflows, and deployment in one
+evidence-backed system.
+
+Score Studio for Cursor brings that whole vision lifecycle into the codebase
+you already have: data → model or VLM → evidence → workflow → runtime →
+production feedback.
 
 ## Included
 

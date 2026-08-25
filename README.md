@@ -1,6 +1,12 @@
 # Score Studio for Cursor
 
-A Cursor plugin for turning a computer-vision objective into a versioned,
+## Give your agents sight.
+
+Score Studio is the computer vision layer for agents, automating data
+generation, annotation, training, evaluation, workflows, and deployment in one
+evidence-backed system.
+
+This Cursor plugin turns a computer-vision objective into a versioned,
 evidence-gated Score Studio system. It helps an agent inspect the live contract,
 integrate the Python SDK or REST API, compose workflows, and check a model or
 workflow before release.
