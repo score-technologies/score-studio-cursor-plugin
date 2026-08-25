@@ -6,7 +6,9 @@ description: Integrate an application with Score Studio's SDK or REST API across
 # Score Studio integration
 
 Read `../../references/capability-map.md` and
-`../../references/contract-playbook.md` before implementing.
+`../../references/contract-playbook.md` before implementing. Read
+`../../references/evaluation-contract-v3.md` when the integration creates,
+compares, controls, or releases from evaluations.
 
 ## Contract discovery
 
@@ -30,7 +32,10 @@ creating a second integration stack.
 4. Read URL/token configuration from secrets. Do not log tokens, API keys,
    signed URLs, raw private media, or provider credentials.
 5. Set explicit request timeouts. For long-running operations, use bounded
-   polling with terminal states and preserve the durable task/run identifier.
+   polling with terminal states, display real completed/total progress, and
+   preserve the durable task/run identifier. Use idempotency keys where the
+   contract supports them; retry creates new evidence instead of rewriting the
+   original run.
 6. Preserve provenance identifiers: organization, dataset slug and version,
    model and model version, evaluation run, workflow, workload, deployment and
    revision as applicable.
@@ -41,17 +46,25 @@ creating a second integration stack.
 
 ## Python SDK baseline
 
-The 2026-08-24 SDK exposes the core loop: login/orgs; dataset creation,
+The 2026-08-25 SDK exposes the core loop: login/orgs; dataset creation,
 versioning, and uploads; model listing and training; evaluation and leaderboard;
 deployment and inference; competitions; and API-key management. Method names in
 the bundled capability map are hints only. Inspect the installed client before
 calling them.
+
+The current REST contract is ahead of the SDK for evaluation validation and
+profiles, evaluation cancel/retry controls, exact-run auto-deploy, deployment
+verification/rollback, organization member removal, alpha-payment inspection,
+and segmentation runtime readiness. Use verified REST operations for those
+capabilities instead of inventing SDK methods.
 
 ## Done when
 
 - the implementation uses a verified contract;
 - secrets stay outside source control;
 - async work cannot poll forever;
+- evaluation contracts are validated before queueing and incomparable runs are
+  never ranked together;
 - immutable version identifiers are preserved;
 - errors and preview/deferred behavior remain truthful;
 - focused tests pass and the usage path is documented.

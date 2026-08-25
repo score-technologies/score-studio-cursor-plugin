@@ -1,8 +1,8 @@
 {
   "name": "score-studio",
   "displayName": "Score Studio",
-  "version": "0.1.0",
-  "description": "Design, integrate, evaluate, and release production computer-vision systems with Score Studio.",
+  "version": "0.2.0",
+  "description": "Design, integrate, measure, and release evidence-gated computer-vision systems with Score Studio.",
   "author": {
     "name": "Score Technologies"
   },
@@ -16,6 +16,7 @@
     "training",
     "vlm",
     "evaluation",
+    "evidence",
     "workflows",
     "deployment",
     "inference"

@@ -14,8 +14,13 @@ score-studio-integration:
   dataset version, model version, evaluation run, and deployment revision in
   application state and logs.
 - Treat evaluation evidence as a release prerequisite, not a dashboard
-  afterthought. Do not report a model or workflow as ready without the named
-  metric, threshold, dataset version, and result.
+  afterthought. Validate and freeze the evaluation contract before execution.
+  Do not report a model or workflow as ready without a succeeded, measured
+  contract-v3 run on an eligible held-out test or benchmark, with predeclared
+  acceptance criteria and the exact evaluated artifact.
+- Do not compare evaluation runs whose comparison keys differ. Preserve purpose,
+  distribution, split, thresholds, class mapping/scope, evaluator revision,
+  sample cap, seed, and immutable model/dataset versions.
 - Distinguish workflow definitions from workloads. A workflow is reusable and
   versioned; a workload is a durable execution that may be paused, resumed, or
   cancelled when the API reports those capabilities.
@@ -23,7 +28,12 @@ score-studio-integration:
   reports `mode: preview` or lists `deferred_blocks`, surface that truth to the
   caller instead of claiming those blocks ran.
 - Keep model, runtime, provider connection, storage target, and credentials as
-  separate choices. Validate compatibility before creating a deployment.
+  separate choices. Validate compatibility before creating a deployment, then
+  verify the active revision and retain its health evidence. A deployment record
+  alone is not proof that the runtime acknowledged the revision.
+- Treat generated assets, proposed labels, exported artifacts, and queued jobs as
+  intermediate evidence. Success requires durable outputs and the measured
+  outcome counts defined by the current contract.
 - Build a production feedback loop: monitoring and captured samples should lead
   to reviewable, versioned data rather than silent mutation of training data.
 - Use Score Studio's customer-facing terms: Workflow builder, workflow,

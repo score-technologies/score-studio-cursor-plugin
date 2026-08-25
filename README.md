@@ -10,7 +10,7 @@ focused on the parts of Score Studio that are useful from a codebase:
 
 - data ingestion, annotation interchange, versioning, and health;
 - specialist model training and VLM fine-tuning;
-- evaluation, conformity evidence, and release gates;
+- contract-v3 evaluation, reproducible evidence, and release gates;
 - workflow composition across models, logic, deployment, and monitoring;
 - deployment, inference, workloads, and the production feedback loop.
 
@@ -23,13 +23,12 @@ installation.
 node scripts/validate-template.mjs
 ```
 
-The plugin is licensed under Apache-2.0. Before marketplace submission, add the
-final repository URL to the plugin manifest and test the installed plugin in
-Cursor.
+The plugin is licensed under Apache-2.0. Test each release as a local plugin in
+Cursor before publishing or refreshing its marketplace listing.
 
-## Source baseline
+## Compatibility
 
-Product guidance was derived from Score Studio commit `08bc450` (2026-08-24),
-including the current OpenAPI contract, Python SDK, workflow block catalog, and
-launch-readiness audit. The plugin tells Cursor to prefer a project's installed
-SDK and live OpenAPI document over this bundled snapshot whenever they differ.
+The plugin contains public product guidance for the current Score Studio API,
+SDK, workflows, evaluation methodology, and runtime evidence boundaries. It
+tells Cursor to prefer a project's installed SDK and live OpenAPI document over
+bundled guidance whenever they differ.

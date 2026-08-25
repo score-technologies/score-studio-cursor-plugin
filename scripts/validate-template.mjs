@@ -10,6 +10,26 @@ const warnings = [];
 
 const pluginNamePattern = /^[a-z0-9](?:[a-z0-9.-]*[a-z0-9])?$/;
 const marketplaceNamePattern = /^[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+const excludedSecurityDirectories = new Set([".git", "node_modules"]);
+const securityTextExtensions = new Set(["", ".cjs", ".js", ".json", ".md", ".mdc", ".mjs", ".ts", ".txt", ".yaml", ".yml"]);
+const forbiddenReleasePatterns = [
+  {
+    label: "private Score Studio source repository",
+    pattern: new RegExp("github\\.com/" + "score-technologies/score-studio(?:\\.git|[/#@\\s]|$)", "i"),
+  },
+  {
+    label: "private source commit identifier",
+    pattern: /Score Studio[^\n]{0,100}\b(?:commit|main at)\s+[`'"]?[0-9a-f]{7,40}\b/i,
+  },
+  {
+    label: "absolute developer filesystem path",
+    pattern: new RegExp("(?:/" + "Users/[^/\\s]+/|/" + "home/[^/\\s]+/|[A-Za-z]:\\\\" + "Users\\\\[^\\\\\\s]+\\\\)"),
+  },
+  {
+    label: "embedded credential",
+    pattern: new RegExp("(?:gh" + "[oprsu]_[A-Za-z0-9]{20,}|github_" + "pat_[A-Za-z0-9_]{20,}|npm_" + "[A-Za-z0-9]{20,}|sk-" + "[A-Za-z0-9]{20,})"),
+  },
+];
 
 function addError(message) {
   errors.push(message);
@@ -112,6 +132,28 @@ async function walkFiles(dirPath) {
   }
 
   return files;
+}
+
+async function validatePublicReleaseHygiene(directory) {
+  const entries = await fs.readdir(directory, { withFileTypes: true });
+  for (const entry of entries) {
+    if (excludedSecurityDirectories.has(entry.name)) continue;
+    const entryPath = path.join(directory, entry.name);
+    const displayPath = path.relative(repoRoot, entryPath);
+    if (entry.isSymbolicLink()) {
+      addError(`Public release contains a symbolic link: ${displayPath}`);
+      continue;
+    }
+    if (entry.isDirectory()) {
+      await validatePublicReleaseHygiene(entryPath);
+      continue;
+    }
+    if (!entry.isFile() || !securityTextExtensions.has(path.extname(entry.name).toLowerCase())) continue;
+    const content = await fs.readFile(entryPath, "utf8");
+    for (const { label, pattern } of forbiddenReleasePatterns) {
+      if (pattern.test(content)) addError(`${displayPath} contains ${label}`);
+    }
+  }
 }
 
 function isSafeRelativePath(value) {
@@ -248,6 +290,8 @@ function resolveMarketplaceSource(source, pluginRoot) {
 }
 
 async function main() {
+  await validatePublicReleaseHygiene(repoRoot);
+
   const marketplacePath = path.join(repoRoot, ".cursor-plugin", "marketplace.json");
   const marketplace = await readJsonFile(marketplacePath, "Marketplace manifest");
   if (!marketplace) {

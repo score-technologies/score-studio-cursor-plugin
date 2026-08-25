@@ -1,21 +1,21 @@
 # Score Studio capability map
 
-Baseline: Score Studio `08bc450`, 2026-08-24. Use this to choose a product path,
-not to hardcode an API. Verify the current SDK, OpenAPI contract, and block
-catalog before implementation.
+Use this public capability map to choose a product path, not to hardcode an API.
+Verify the current SDK, OpenAPI contract, and block catalog before
+implementation.
 
 ## Core lifecycle
 
 | Area | What developers can automate | Important invariant |
 | --- | --- | --- |
 | Data | Create datasets, ingest media, import/export annotations, inspect health, archive/restore, create versions | Training and evaluation pin immutable versions |
-| Annotation | Specialist labels plus VLM captions, questions, answers, phrases, and linked regions; auto-label and human review | Uncertain output remains reviewable evidence |
-| Models | Registry discovery, specialist training, VLM fine-tuning, calibration, artifacts/weights | Preserve model-version provenance |
-| Evaluation | Runs, reports, visual evidence, class/slice analysis, leaderboard, conformity and monitoring | Release gates name a dataset version, metric, threshold, and result |
+| Annotation | Specialist labels plus VLM captions, questions, answers, phrases, and linked regions; auto-label, durable counts, provenance, and human review | Teacher output is proposed evidence; empty output is not successful labeling |
+| Models | Registry discovery, specialist training, evidence-gated auto-training, VLM fine-tuning, calibration, artifacts/weights | Artifact export is not improvement; preserve phases, verdict, independent evaluation, and model-version provenance |
+| Evaluation | Contract validation, saved profiles, measured runs, real progress, cancel/retry, reports, intervals, calibration, class/size slices, segmentation metrics, leaderboard and conformity | Only identical comparison keys are ranked; release uses the exact eligible run ID |
 | Workflows | Typed graph of inputs, models/VLMs, transformations, logic, training, evaluation, release, monitoring, and integrations | Definition, preview, workload, and deployment are distinct states |
-| Production | Managed/provider/edge deployment, revisions, actions, inference, logs, devices, monitoring, captured samples | Model, runtime, provider, credentials, and storage are separate choices |
+| Production | Managed/provider/edge deployment, revisions, exact-run release, verification, rollback, inference, logs, devices, monitoring, captured samples | Model, runtime, provider, credentials, and storage are separate; retain active-revision health evidence |
 | Operations | Durable workloads and global task controls | Only expose pause/resume/cancel when the task state permits it |
-| Platform | Organizations, API keys, providers, usage/billing, audit, SSO/SCIM | Scope access to the organization and least privilege |
+| Platform | Organizations and member administration, API keys, providers, usage/billing, Stripe/TAO/alpha payments, audit, SSO/SCIM | Scope access to the organization and least privilege; production config fails closed |
 
 ## Current Python SDK surface
 
@@ -31,6 +31,34 @@ The bundled SDK baseline exposes methods for:
 
 Inspect the installed package for exact signatures. Newer REST capabilities may
 not yet have a matching SDK helper.
+
+## REST capabilities ahead of the SDK
+
+The 2026-08-25 OpenAPI contract adds operations for:
+
+- validating an evaluation contract before queueing;
+- creating/listing immutable evaluation profiles and running a profile;
+- canceling an active evaluation or retrying failed/canceled evidence as a new
+  run;
+- releasing the exact eligible evaluation run rather than searching history;
+- verifying deployment health with retained runtime/provider/device evidence;
+- rolling back a deployment revision, using provision-verify-switch-release for
+  provider runtimes that cannot mutate in place;
+- checking segmentation runtime readiness;
+- removing organization members with owner/admin boundaries;
+- inspecting alpha payment addresses, deposits, and burns.
+
+Verify exact paths and schemas in the current OpenAPI document.
+
+## Measured evaluation surface
+
+Contract v3 supports detection, classification, and segmentation. Depending on
+task and available evidence it reports mAP50/mAP50–95, precision, recall, F1,
+accuracy, per-class evidence, confusion, object-size slices, threshold sweeps,
+calibration, deterministic bootstrap intervals, latency, throughput, CPU/memory,
+and visible NVIDIA GPU/power/energy telemetry. Segmentation adds instance-mask
+AP, matched mask IoU, Dice, and Boundary IoU. Never invent unavailable remote
+resource telemetry.
 
 ## Workflow block families
 

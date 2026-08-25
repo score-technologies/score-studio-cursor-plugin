@@ -20,8 +20,9 @@ from the Score Studio API or repository before authoring a definition.
    adapter that the catalog does not expose.
 5. Validate or normalize model output before downstream automation. Use a
    structured-output contract for VLM responses.
-6. Insert evaluation, conformity, or explicit threshold gates before any
-   release target.
+6. Insert an eligible measured evaluation and, when applicable, conformity gate
+   before any release target. Validation, stress, and OOD runs may inform a
+   decision but cannot independently authorize automatic release.
 7. Keep runtime choices explicit. Provider-backed blocks need a tested provider
    connection; edge targets need a registered compatible device.
 8. Add monitoring and captured-sample review when production decisions can
@@ -43,8 +44,11 @@ Check:
   resource;
 - the graph has no unintended cycle or orphaned release path;
 - dataset and evaluation nodes pin immutable versions;
+- evaluation nodes freeze purpose, distribution, held-out split, class mapping,
+  thresholds, evaluator identity, and acceptance criteria before execution;
 - model weights and runtime format are compatible with the target;
 - provider, device, and storage connections are tested;
+- the active deployment revision is verified and a rollback target exists;
 - output and event payloads have explicit schemas;
 - the feedback path creates reviewable data and a new version.
 

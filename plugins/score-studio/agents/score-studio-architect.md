@@ -15,8 +15,10 @@ Ask only for decisions that cannot be inferred safely.
 Design in this order:
 
 1. Define the observable outcome and failure cost.
-2. Define the evaluation contract: input population, immutable benchmark,
-   expected output schema, quality metrics, thresholds, slices, and latency.
+2. Define the evaluation contract before execution: purpose, distribution,
+   held-out split, immutable benchmark, provenance/license, expected output
+   schema, class mapping, metrics, thresholds, slices, sample cap, seed,
+   evaluator identity, and latency/resource targets.
 3. Choose the simplest model path that can meet it: registry model, specialist
    training, VLM/fine-tuning, or Model Foundry for genuinely frontier work.
 4. Define the data lifecycle: ingestion, annotation/interchange, review policy,
@@ -24,7 +26,8 @@ Design in this order:
 5. Compose the workflow with typed inputs and outputs. Mark provider-backed or
    deferred blocks explicitly.
 6. Choose runtime and provider independently, then validate weights, model
-   format, device, storage, credentials, and capacity.
+   format, device, storage, credentials, and capacity. Require post-deployment
+   revision verification and a rollback target.
 7. Define monitoring, conformity checks, sampled evidence, human review, and
    promotion back into a new dataset version.
 

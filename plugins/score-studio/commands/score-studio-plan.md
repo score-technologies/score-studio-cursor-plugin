@@ -11,8 +11,9 @@ Inspect the repository before asking questions. Produce:
 
 1. the operating outcome and non-goals;
 2. inputs, outputs, and a machine-readable output contract;
-3. the immutable evaluation dataset, metrics, slices, thresholds, and latency
-   target;
+3. the contract-v3 evaluation purpose, distribution, held-out split, immutable
+   dataset, provenance/license, class mapping, metrics, slices, thresholds,
+   sample cap, seed, and latency/resource targets;
 4. the selected model path and why it is the smallest credible option;
 5. the data, training/fine-tuning, evaluation, workflow, deployment, monitoring,
    and feedback stages that are actually needed;

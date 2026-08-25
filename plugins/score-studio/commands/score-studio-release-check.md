@@ -11,4 +11,7 @@ available Score Studio evidence.
 Return one of: `ready`, `conditional`, or `blocked`. Every failed or unknown gate
 must include the evidence inspected, the missing proof, impact, and the smallest
 next action. Never convert an unavailable provider, missing credentials,
-preview-only workflow block, or absent evaluation result into a pass.
+preview-only workflow block, incomparable evaluation, estimated resource value,
+or absent evaluation result into a pass. A `ready` verdict requires the exact
+eligible evaluation run and retained verification evidence for the active
+deployment revision.
