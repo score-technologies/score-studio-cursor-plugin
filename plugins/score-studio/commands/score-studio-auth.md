@@ -19,7 +19,7 @@ Let the CLI present its OAuth or API-key choice. Prefer browser OAuth for an
 interactive user, and allow them to complete the browser consent flow. Do not
 ask them to paste credentials into chat and never print or inspect the persisted
 credential. When executing the MCP server from its source checkout, use
-`npm start -- auth login` instead.
+`npm run auth` instead.
 
 For sign-out, run:
 
@@ -27,5 +27,5 @@ For sign-out, run:
 score-studio auth logout
 ```
 
-When executing from source, use `npm start -- auth logout`. Report whether the
+When executing from source, use `npm run auth:logout`. Report whether the
 operation succeeded, but do not reveal credential contents or storage details.

@@ -49,8 +49,8 @@ score-studio auth login
 score-studio auth logout
 ```
 
-When running this repository's MCP server from source, use
-`npm start -- auth login` or `npm start -- auth logout`. OAuth is preferred for
+When running this repository's MCP server from source, use `npm run auth` or
+`npm run auth:logout`. OAuth is preferred for
 interactive use; API keys and `SCORESTUDIO_TOKEN` remain suitable for CI and
 other non-interactive secret stores. Never commit credentials. The production
 API defaults to `https://api.scorestudio.ai`; set `SCORESTUDIO_URL` only for a
