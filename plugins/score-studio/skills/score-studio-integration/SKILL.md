@@ -29,8 +29,11 @@ creating a second integration stack.
 2. Map it to verified client methods or endpoints and response schemas.
 3. Define typed application-level inputs and outputs so vendor payloads do not
    leak through the whole codebase.
-4. Read URL/token configuration from secrets. Do not log tokens, API keys,
-   signed URLs, raw private media, or provider credentials.
+4. For an interactive MCP CLI, use its persisted OAuth login instead of asking
+   the user to manually obtain a token. Use API keys or environment credentials
+   from a secret store for automation and other non-interactive applications.
+   Do not log tokens, API keys, signed URLs, raw private media, or provider
+   credentials.
 5. Set explicit request timeouts. For long-running operations, use bounded
    polling with terminal states, display real completed/total progress, and
    preserve the durable task/run identifier. Use idempotency keys where the

@@ -22,6 +22,7 @@ production feedback.
   into a concrete Score Studio architecture.
 - `/score-studio-plan`: produce an implementation-ready system plan.
 - `/score-studio-integrate`: implement a minimal end-to-end integration.
+- `/score-studio-auth`: sign in or out with the Score Studio MCP CLI.
 - `/score-studio-workflow`: design or update a workflow definition.
 - `/score-studio-release-check`: check whether a model or workflow is ready to
   release.
@@ -38,11 +39,22 @@ ln -s "$(pwd)/plugins/score-studio" ~/.cursor/plugins/local/score-studio
 Restart Cursor or run `Developer: Reload Window`, then confirm the Score Studio
 skills, agent, and commands appear in Customize.
 
-No API credential is stored by this plugin. The production API defaults to
-`https://api.scorestudio.ai`, so a standard setup only needs
-`SCORESTUDIO_TOKEN` from the application's secret-management path. Set
-`SCORESTUDIO_URL` only to target a custom, staging, self-hosted, or local Score
-Studio API. Never commit the token.
+No API credential is stored by this plugin. The Score Studio MCP CLI persists
+its own credential after an interactive browser OAuth login or API-key login.
+Starting the CLI prompts for one of those methods when no saved credential is
+available. You can also manage the session explicitly:
+
+```bash
+score-studio-mcp auth login
+score-studio-mcp auth logout
+```
+
+When running this repository's MCP server from source, use
+`npm start -- auth login` or `npm start -- auth logout`. OAuth is preferred for
+interactive use; API keys and `SCORESTUDIO_TOKEN` remain suitable for CI and
+other non-interactive secret stores. Never commit credentials. The production
+API defaults to `https://api.scorestudio.ai`; set `SCORESTUDIO_URL` only for a
+custom, staging, self-hosted, or local Score Studio API.
 
 ## Contract policy
 

@@ -27,12 +27,16 @@ Preserve identifiers needed for audit and idempotency:
 
 ## Authentication
 
-The Python SDK baseline accepts `token=` or `SCORESTUDIO_TOKEN` and accepts its
-API through `base_url=` or `SCORESTUDIO_URL`. Generated hosted integrations
-should fall back to `https://api.scorestudio.ai` when neither URL override is
-set. Inference may use a scoped API key. Verify current scope names before
-creating a key. A key value may be shown only once; send it directly to the
-deployment secret store and never log it.
+The interactive Score Studio MCP CLI should use its persisted browser OAuth
+session (`score-studio-mcp auth login`) by default, with API-key login as the
+fallback and `score-studio-mcp auth logout` removing the saved credential. The
+Python SDK baseline accepts `token=` or `SCORESTUDIO_TOKEN` and accepts its API
+through `base_url=` or `SCORESTUDIO_URL`; these remain appropriate for CI and
+other non-interactive secret stores. Generated hosted integrations should fall
+back to `https://api.scorestudio.ai` when neither URL override is set.
+Inference may use a scoped API key. Verify current scope names before creating
+a key. A key value may be shown only once; send it directly to the deployment
+secret store and never log it.
 
 ## Durable operations
 
