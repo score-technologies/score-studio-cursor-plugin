@@ -13,7 +13,7 @@ HTTP, configuration, error, and test conventions. Prefer the Python
 `scorestudio` SDK when it is available and fits the project; otherwise generate
 REST calls from the current OpenAPI contract.
 
-For interactive MCP CLI use, prefer `score-studio-mcp auth login` and its saved
+For interactive MCP CLI use, prefer `score-studio auth login` and its saved
 OAuth session; do not require the user to manually acquire or paste a token when
 browser login is available. Use API keys or environment credentials for CI and
 other non-interactive secret stores. Add typed boundaries, actionable API

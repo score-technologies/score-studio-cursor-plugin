@@ -45,8 +45,8 @@ Starting the CLI prompts for one of those methods when no saved credential is
 available. You can also manage the session explicitly:
 
 ```bash
-score-studio-mcp auth login
-score-studio-mcp auth logout
+score-studio auth login
+score-studio auth logout
 ```
 
 When running this repository's MCP server from source, use
