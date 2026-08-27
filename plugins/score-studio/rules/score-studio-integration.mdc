@@ -8,10 +8,13 @@ score-studio-integration:
 - Treat the installed SDK, checked-in OpenAPI artifact, or authorized live
   OpenAPI document as the source of truth. Never invent routes, fields, model
   slugs, workflow block types, scopes, or provider capabilities.
-- Keep credentials out of source control. Use `https://api.scorestudio.ai` as
-  the default API and read `SCORESTUDIO_TOKEN` from the environment or host
-  application's secret store. Honor `SCORESTUDIO_URL` when a user explicitly
-  configures a custom, staging, self-hosted, or local API.
+- Keep credentials out of source control. For interactive Score Studio MCP CLI
+  use, prefer its persisted browser OAuth flow (`score-studio auth login`)
+  and use `score-studio auth logout` to remove the saved session. Do not ask
+  the user to manually copy a token when that flow is available. API keys or
+  `SCORESTUDIO_TOKEN` remain appropriate for CI and host secret stores. Use
+  `https://api.scorestudio.ai` by default and honor `SCORESTUDIO_URL` for an
+  explicitly configured custom, staging, self-hosted, or local API.
 - Use immutable dataset versions for training and evaluation. Preserve the
   dataset version, model version, evaluation run, and deployment revision in
   application state and logs.
